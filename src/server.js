@@ -58,10 +58,6 @@ app.use((err, req, res, next) => {
 
   const isProd = process.env.NODE_ENV === "production";
 
-  app.use((req, res) => {
-  res.status(404).json({message: 'Route not found'});
-});
-
   res.status(500).json({
     message: isProd
       ? "Something went wrong. Please try again later."
