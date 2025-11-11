@@ -1,9 +1,9 @@
-import { HttpError } from "http-error";
+import createHttpError from "http-errors";
 
 export const errorHandler = (err, req, res, next) => {
-  console.log('Error Midlleware:', err);
+  console.log("Error Middleware:", err);
 
-  if(err instanceof HttpError) {
+  if (createHttpError.isHttpError(err)) {
     return res.status(err.status).json({
       message: err.message || err.name,
     });
@@ -13,7 +13,7 @@ export const errorHandler = (err, req, res, next) => {
 
   res.status(500).json({
     message: isProd
-    ? "Something went wrong. Please try again later."
-    : err.message,
+      ? "Something went wrong. Please try again later."
+      : err.message,
   });
 };
