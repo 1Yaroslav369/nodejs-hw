@@ -7,6 +7,7 @@ import { logger } from './middleware/logger.js';
 import { connectMongoDB } from './db/connectMongoDB.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
+import { errors } from 'celebrate';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -28,18 +29,12 @@ app.use((req, res, next) => {
 
 app.use(notesRoutes);
 app.use(notFoundHandler);
+app.use(errors());
 app.use(errorHandler);
 
-const startServer = async () => {
-  try {
-    await connectMongoDB();
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
-  } catch (error) {
-    console.error('Failed to start server:', error);
-    process.exit(1);
-  }
-};
+await connectMongoDB();
 
-startServer();
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
