@@ -81,7 +81,7 @@ export const refreshUserSession = async (req, res, next) => {
     refreshToken: req.cookies.refreshToken,
   });
 
-  const newSession = await createHttpError(session.userId);
+  const newSession = await createSession(session.userId);
   setSessionCookies(res, newSession);
 
   res.status(200).json({
