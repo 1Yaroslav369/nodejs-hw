@@ -32,8 +32,8 @@ app.use((req, res, next) => {
 });
 
 app.use(authRoutes);
-app.use(userRoutes);
 app.use(notesRoutes);
+app.use(userRoutes);
 
 app.use(notFoundHandler);
 

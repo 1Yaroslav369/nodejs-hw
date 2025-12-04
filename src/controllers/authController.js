@@ -125,6 +125,7 @@ export const requestResetEmail = async (req, res, next) => {
       from: process.env.SMTP_FROM,
       to: email,
       subject: 'Password Reset Request',
+      html,
     });
   } catch {
     return createHttpError(500, 'Failed to send email');
