@@ -6,9 +6,9 @@ import cookieParser from 'cookie-parser';
 import { errors } from 'celebrate';
 
 // routes
-import userRoutes from './routes/userRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import notesRoutes from './routes/notesRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 // middleware
 import { logger } from './middleware/logger.js';
